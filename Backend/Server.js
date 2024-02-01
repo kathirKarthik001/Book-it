@@ -12,15 +12,18 @@ const app = express()
 //MongoDB connect
 connectDB()
 
+
+//req - parsers
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
 
+//routes
+app.use('/api/users' , require('./routes/userRoutes'))
+
+
 //middlewares
 app.use(errorMiddleware)
-
-
-app.use('/api/users' , require('./routes/userRoutes'))
 
 
 app.listen(PORT , () =>{
