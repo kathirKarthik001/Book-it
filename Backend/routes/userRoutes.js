@@ -13,5 +13,4 @@ router.route('/login').post(LoginUser)
 
 router.route('/me').get(protect , GetME)   // protected
 
-
 module.exports = router

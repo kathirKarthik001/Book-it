@@ -1,6 +1,9 @@
 const express =  require('express')
 const  dotenv = require('dotenv').config()
 const colors = require('colors')
+const cron = require('node-cron')
+const bookingRoutes = require('./routes/BookingRoutes')
+
 
 const connectDB = require('./config/db')
 
@@ -25,6 +28,11 @@ app.use('/api/hall' , require('./routes/hallRoutes'))
 
 //middlewares
 app.use(errorMiddleware)
+
+
+app.use(bookingRoutes);
+
+
 
 
 app.listen(PORT , () =>{

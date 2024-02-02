@@ -14,6 +14,11 @@ const hallSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please add a location'],
     },
+    status: {
+        type: String,
+        enum: ["scheduled", "finished"],
+        default: "scheduled",
+    },
 });
 
 

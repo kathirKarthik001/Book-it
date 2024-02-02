@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler')
 const Hall = require('../model/hallModel')
 const User = require('../model/userModel')
 
+
 // @desc Get hall
 // @route  GET /api/hall
 // @access Admin
@@ -10,6 +11,7 @@ const User = require('../model/userModel')
 const getHalls = asyncHandler (  async (req , res) =>{
     const halls = await Hall.find();
     res.status(200).json(halls);
+    
 })
 
 // @desc Create hall
@@ -17,9 +19,9 @@ const getHalls = asyncHandler (  async (req , res) =>{
 // @access Admin
 
 const createHall =  asyncHandler (  async (req , res) =>{
-   const {name , capacity , location} = req.body
+   const {name , capacity , location, status} = req.body
 
-   if(!name || !capacity || !location){
+   if(!name || !capacity || !location || status){
         res.status(400)
         throw new Error('Input all values')
    }
@@ -34,7 +36,8 @@ const createHall =  asyncHandler (  async (req , res) =>{
    const newHall = await Hall.create({
         name,
         capacity,
-        location
+        location,
+        status
    })
 
    res.status(200).json(newHall)
@@ -91,4 +94,5 @@ module.exports ={
     getHalls 
     ,createHall 
     ,updateHall 
-    ,deleteHall }
+    ,deleteHall,
+}
