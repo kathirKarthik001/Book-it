@@ -17,7 +17,7 @@ const getHalls = asyncHandler (  async (req , res) =>{
 // @access Admin
 
 const createHall =  asyncHandler (  async (req , res) =>{
-   const {name , capacity , location} = req.body
+   const {name , capacity , location ,amenities ,contactNumber,inChargePerson } = req.body
 
    if(!name || !capacity || !location){
         res.status(400)
@@ -34,7 +34,10 @@ const createHall =  asyncHandler (  async (req , res) =>{
    const newHall = await Hall.create({
         name,
         capacity,
-        location
+        location,
+        amenities,
+        contactNumber,
+        inChargePerson
    })
 
    res.status(200).json(newHall)
@@ -88,7 +91,7 @@ const deleteHall = asyncHandler (  async (req , res) =>{
 
 
 module.exports ={ 
-    getHalls 
-    ,createHall 
-    ,updateHall 
-    ,deleteHall }
+    getHalls,
+    createHall,
+    updateHall,
+    deleteHall }

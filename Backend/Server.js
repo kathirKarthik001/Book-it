@@ -21,6 +21,7 @@ app.use(express.urlencoded({extended:false}))
 //routes
 app.use('/api/users' , require('./routes/userRoutes'))
 app.use('/api/hall' , require('./routes/hallRoutes'))
+app.use('/api/booking' , require('./routes/bookingRoutes'))
 
 
 //middlewares
