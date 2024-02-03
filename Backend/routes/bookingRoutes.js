@@ -12,10 +12,17 @@ const { checkForConflicts } = require('../middleware/conflictMiddleware')
 // admin midlleware 
 const { adminProtect } = require('../middleware/adminMiddleware')
 
+
+
 router.route('/').get(protect,GetBookings ).post(protect , checkForConflicts ,bookHall )
 
 router.route('/:id').put(protect , checkForConflicts ,EditBooking ).delete(protect ,DeleteBooking )
 
+
+// admin dashboard URIs
+
 router.route('/pending').get(protect,adminProtect,PendingBookings )
+
 router.route('/pending/:id').patch(protect,adminProtect, Decision)
+
 module.exports = router

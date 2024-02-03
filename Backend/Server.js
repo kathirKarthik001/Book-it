@@ -3,6 +3,7 @@ const  dotenv = require('dotenv').config()
 const colors = require('colors')
 
 const connectDB = require('./config/db')
+const ScheduledJob = require('./service/scheduledJob')
 
 const {errorMiddleware} = require('./middleware/errorMiddleware')
 
@@ -11,6 +12,7 @@ const app = express()
 
 //MongoDB connect
 connectDB()
+ScheduledJob()
 
 
 //req - parsers

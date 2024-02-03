@@ -9,6 +9,7 @@ const checkForConflicts = asyncHandler(async (req, res, next) => {
     _id: { $ne: req.params.id },
     hallId: hallId,
     status:{$ne: 'rejected' },
+    status:{$ne: 'finished' },
     $or: [
       { startTime: { $lt: endTime, $gte: startTime } },
       { endTime: { $gt: startTime, $lte: endTime } }

@@ -62,6 +62,10 @@ const EditBooking = asyncHandler(async(req, res)=>{
         throw new Error('No such Booking found')
     }
 
+    if(booking_data.status ==="approved" || booking_data.status ==="finished"){
+        res.status(401)
+        throw new Error('Can\'t edit this booking anymore ')
+    }
     // check whether the user is the owner of the booking 
     if(booking_data.userId.toString() !== req.user.id){
         res.status(401)
@@ -150,5 +154,5 @@ module.exports ={
     EditBooking,
     DeleteBooking,
     PendingBookings,
-    Decision
-    }
+    Decision 
+}
