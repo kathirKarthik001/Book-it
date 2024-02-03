@@ -4,7 +4,7 @@ const User = require('../model/userModel')
 
 // @desc Get hall
 // @route  GET /api/hall
-// @access Admin
+// @access to all users
 
 
 const getHalls = asyncHandler (  async (req , res) =>{

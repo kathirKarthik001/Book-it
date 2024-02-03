@@ -11,8 +11,7 @@ const bookingSchema = new mongoose.Schema(
         hallId: {
             type: mongoose.Schema.Types.ObjectId,
             required: [true, 'Please provide a hall ID'],
-            ref: 'Hall'
-            
+            ref: 'Hall'     
         },
         event:{
             type:String,
@@ -27,21 +26,17 @@ const bookingSchema = new mongoose.Schema(
             type:String,
             required: [true, 'Please provide the Department'],
         },
-        date: {
-            type: Date,
-            required: [true, 'Please provide a booking date'],
-        },
         startTime: {
-            type: String,
+            type: Date,
             required: [true, 'Please provide a start time'],
         },
         endTime: {
-            type: String,
+            type: Date,
             required: [true, 'Please provide an end time'],
         },
         status: {
             type: String,
-            enum: ['pending', 'finished'],
+            enum: ['pending','approved','rejected'],
             default: 'pending',
         },
     },

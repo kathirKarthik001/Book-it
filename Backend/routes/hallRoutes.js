@@ -11,7 +11,7 @@ const { adminProtect } = require('../middleware/adminMiddleware')
 
 
 
-router.route('/').get(protect , adminProtect, getHalls).post(protect ,adminProtect, createHall)
+router.route('/').get(protect , getHalls).post(protect ,adminProtect, createHall)
 
 router.route('/:id').put(protect ,adminProtect, updateHall).delete(protect ,adminProtect, deleteHall)
 

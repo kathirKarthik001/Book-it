@@ -9,7 +9,6 @@ const Booking = require('../model/bookingModel')
 // @access all user
 
 const GetBookings = asyncHandler(async(req, res)=>{
-
     const Bookings_list = await Booking.find()
     res.status(200).json(Bookings_list)
 })
@@ -20,9 +19,9 @@ const GetBookings = asyncHandler(async(req, res)=>{
 // @access user specific
 
 const bookHall = asyncHandler (async (req, res) =>{
-    const { hallId ,event, coordinator, department, date, startTime , endTime } = req.body
+    const { hallId ,event, coordinator, department,  startTime , endTime } = req.body
 
-    if(!hallId || !date || !startTime || !endTime ||!event || !coordinator || !department){
+    if(!hallId || !startTime || !endTime ||!event || !coordinator || !department){
         res.status(400)
         throw new Error('Please input all data')
     }
@@ -41,10 +40,8 @@ const bookHall = asyncHandler (async (req, res) =>{
         event:event,
         coordinator : coordinator,
         department:department,
-        date:date,
         startTime : startTime,
         endTime: endTime,
-
     })
 
     res.status(201)
@@ -106,10 +103,52 @@ const DeleteBooking = asyncHandler ( async (req, res) =>{
 })
 
 
+// @desc GET all pending  Bookings
+// @route /api/book/pending   -  GET
+// @access only admin
+
+const PendingBookings = asyncHandler(async (req, res) => {
+    const booking_data = await Booking.find({ status: 'pending' });
+  
+    // Check if any pending bookings were found
+    if (booking_data.length === 0) {
+      res.status(400);
+      throw new Error('No pending bookings yet');
+    }
+  
+    res.status(200);
+    res.json(booking_data);
+  });
+
+  
+// @desc PATCH all pending  Bookings
+// @route /api/booking/pending/:id   -  PATCH
+// @access only admin
+
+const Decision = asyncHandler(async (req, res) => {
+
+    const { status } = req.body
+    
+    const booking_data = await Booking.findById(req.params.id);
+
+    if(!booking_data){
+      res.status(400);
+      throw new Error('Booking not found');
+    }
+
+    const updated_Booking_data = await Booking.findByIdAndUpdate(req.params.id ,req.body,{new:true})
+    
+    res.status(200);
+    res.json(updated_Booking_data);
+  });
+
+
 
 module.exports ={
     bookHall,
     GetBookings,
     EditBooking,
-    DeleteBooking
+    DeleteBooking,
+    PendingBookings,
+    Decision
     }
