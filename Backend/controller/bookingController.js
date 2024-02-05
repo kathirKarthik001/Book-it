@@ -13,9 +13,42 @@ const GetBookings = asyncHandler(async(req, res)=>{
     res.status(200).json(Bookings_list)
 })
 
+// @desc GET  all approved Bookings
+// @route /api/booking/approved   -  GET
+// @access all users
+
+const GetBookings_Approved = asyncHandler(async(req, res)=>{
+    const Bookings_list = await Booking.find({status:'approved'})
+
+    // Check if any pending bookings were found
+    if (Bookings_list.length === 0) {
+        res.status(400);
+        throw new Error('No approved bookings found');
+      }
+
+    res.status(200).json(Bookings_list)
+})
+
+
+// @desc GET  all my Bookings
+// @route /api/booking/mybookings   -  GET
+// @access all users
+
+const GetBookings_of_User = asyncHandler(async(req, res)=>{
+    const Bookings_list = await Booking.find({userId:req.user._id})
+
+    // Check if any pending bookings were found
+    if (Bookings_list.length === 0) {
+        res.status(400);
+        throw new Error('No bookings found');
+      }
+
+    res.status(200).json(Bookings_list)
+})
+
 
 // @desc book a hall
-// @route /api/book   -  POST
+// @route /api/booking   -  POST
 // @access user specific
 
 const bookHall = asyncHandler (async (req, res) =>{
@@ -50,7 +83,7 @@ const bookHall = asyncHandler (async (req, res) =>{
 
 
 // @desc EDIT a Booking
-// @route /api/book/:Id   -  PUT
+// @route /api/booking/:Id   -  PUT
 // @access user specific
 
 const EditBooking = asyncHandler(async(req, res)=>{
@@ -80,7 +113,7 @@ const EditBooking = asyncHandler(async(req, res)=>{
 })
 
 // @desc DELETE a Booking
-// @route /api/book/:Id   -  DELETE
+// @route /api/booking/:Id   -  DELETE
 // @access user specific
 
 const DeleteBooking = asyncHandler ( async (req, res) =>{
@@ -108,7 +141,7 @@ const DeleteBooking = asyncHandler ( async (req, res) =>{
 
 
 // @desc GET all pending  Bookings
-// @route /api/book/pending   -  GET
+// @route /api/booking/pending   -  GET
 // @access only admin
 
 const PendingBookings = asyncHandler(async (req, res) => {
@@ -153,6 +186,10 @@ module.exports ={
     GetBookings,
     EditBooking,
     DeleteBooking,
+
+    GetBookings_Approved,
+    GetBookings_of_User,    
+
     PendingBookings,
     Decision 
 }

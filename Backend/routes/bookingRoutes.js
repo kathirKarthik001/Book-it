@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const {GetBookings , bookHall , EditBooking ,DeleteBooking , PendingBookings , Decision} = require('../controller/bookingController')
+const {GetBookings , bookHall , EditBooking ,DeleteBooking , PendingBookings , Decision,GetBookings_Approved , GetBookings_of_User,} = require('../controller/bookingController')
 
 // authorization midlleware 
 const {protect} = require('../middleware/authMiddleware')  
@@ -18,11 +18,14 @@ router.route('/').get(protect,GetBookings ).post(protect , checkForConflicts ,bo
 
 router.route('/:id').put(protect , checkForConflicts ,EditBooking ).delete(protect ,DeleteBooking )
 
+router.route('/approved').get(protect,GetBookings )
+router.route('/mybookings').get(protect,GetBookings )
 
 // admin dashboard URIs
 
 router.route('/pending').get(protect,adminProtect,PendingBookings )
 
 router.route('/pending/:id').patch(protect,adminProtect, Decision)
+
 
 module.exports = router
