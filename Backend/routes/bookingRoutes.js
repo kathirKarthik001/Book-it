@@ -18,8 +18,9 @@ router.route('/').get(protect,GetBookings ).post(protect , checkForConflicts ,bo
 
 router.route('/:id').put(protect , checkForConflicts ,EditBooking ).delete(protect ,DeleteBooking )
 
-router.route('/approved').get(protect,GetBookings )
-router.route('/mybookings').get(protect,GetBookings )
+router.route('/approved').get(protect,GetBookings_Approved )
+
+router.route('/mybookings').get(protect,GetBookings_of_User )
 
 // admin dashboard URIs
 
