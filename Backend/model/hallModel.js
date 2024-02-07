@@ -8,8 +8,8 @@ const hallSchema = new mongoose.Schema({
     },
     amenities: {
         type: String,
-        enum: ['ac', 'non-ac'],
-        default: 'non-ac',
+        enum: ['a/c', 'non-a/c'],
+        default: 'non-a/c',
     },
     capacity: {
         type: Number,

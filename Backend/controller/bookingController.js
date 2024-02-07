@@ -95,7 +95,7 @@ const EditBooking = asyncHandler(async(req, res)=>{
         throw new Error('No such Booking found')
     }
 
-    if(booking_data.status ==="approved" || booking_data.status ==="finished"){
+    if(booking_data.status ==="approved" || booking_data.status ==="finished"||booking_data.status ==="rejected"){
         res.status(401)
         throw new Error('Can\'t edit this booking anymore ')
     }

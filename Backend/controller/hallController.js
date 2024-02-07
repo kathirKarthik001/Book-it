@@ -94,4 +94,5 @@ module.exports ={
     getHalls,
     createHall,
     updateHall,
-    deleteHall }
+    deleteHall 
+}
