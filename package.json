@@ -5,7 +5,9 @@
   "main": "Server.js",
   "scripts": {
     "start": "node Backend/Server.js",
-    "server": "nodemon Backend/Server.js"
+    "server": "nodemon Backend/Server.js",
+    "client": "npm run dev --prefix frontend",
+    "dev":"concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Naveen S",
   "license": "MIT",
