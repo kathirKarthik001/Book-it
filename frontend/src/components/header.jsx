@@ -4,10 +4,19 @@ import {Link , useNavigate} from 'react-router-dom'
 import {FaSignInAlt , FaSignOutAlt , FaUser } from 'react-icons/fa'
 import { useDispatch , useSelector} from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
+import { toast } from 'react-toastify'
 
-function Header() {
+function Header({onSelect}) {
    const {user} = useSelector((state) => state.auth)
-   
+   const dispatch = useDispatch()
+   const navigate = useNavigate()
+
+   const onTouch = (val) =>{
+    onSelect(val)
+   }
+
+
+
    const handleLogout =() =>{
     dispatch(logout())
     dispatch(reset())
@@ -50,26 +59,26 @@ function Header() {
                 <>
                 <header className='header'>
                     <div className="logo">
-                        <Link to='/' > <Logo width='70px' /> </Link>
+                        <Link to='/'> <Logo width='70px' /> </Link>
                     </div>
             
                     <ul>
                         <li>
-                            Home
+                            <button className='tab' onClick={()=>onTouch(1)}> Home</button>
                         </li>
                         <li>
-                            Events
+                            <button className='tab' onClick={()=>onTouch(2)}>Events</button>
                         </li>
                         <li>
-                            Halls
+                            <button className='tab' onClick={()=>onTouch(3)}>Halls</button>
                         </li>
                     </ul>
                 
-                    <li>
-                        <button className='btn' onClick={handleLogout}>
+                    
+                    <button className='btn' onClick={handleLogout}>
                             <FaSignOutAlt/> Logout
-                        </button>
-                    </li>
+                   </button>
+                
                     
             
             
@@ -78,7 +87,7 @@ function Header() {
                 </>
             )
         }
-        else{
+        else if(role === 'user'){
             return (
                 <>
                 <header className='header'>
@@ -88,13 +97,13 @@ function Header() {
             
                     <ul>
                         <li>
-                            Reserve
+                            <button className='tab' onClick={()=>onTouch(4)}>Reserve</button>
                         </li>
                         <li>
-                            Events
+                            <button className='tab' onClick={()=>onTouch(2)}>Events</button>
                         </li>
                         <li>
-                            Bookings
+                            <button className='tab' onClick={()=>onTouch(5)}>Bookings</button>
                         </li>
                     </ul>
                 
@@ -111,6 +120,11 @@ function Header() {
             )
         }
    }
+
+//    if(user.message){
+//     handleLogout()
+//     toast.error('login failed')
+//    }
   
 }
 

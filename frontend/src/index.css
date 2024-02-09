@@ -60,7 +60,7 @@ h3 {
 }
 
 .header ul li {
-  margin-left: 20px;
+  margin-left: 50px;
 }
 
 .header ul li a {
@@ -214,6 +214,26 @@ h3 {
   .heading p {
     font-size: 1.5rem;
   }
+
+  .header ul li {
+    margin-left: 10px;
+  }
+
+  .btn {
+    padding: 5px 5px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background: #000;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    appearance: button;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 
@@ -242,3 +262,10 @@ p{
   margin-top: 60px;
 }
 
+.tab{
+  border:none;
+  background: transparent;
+  font-size: 1rem;
+  font-family: sans-serif;
+  font-weight: 400;
+}
