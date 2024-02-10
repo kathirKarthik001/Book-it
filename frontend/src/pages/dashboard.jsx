@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../components/header'
-
+import { useDispatch , useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import AdminPanel from '../components/AdminPanel'
 import Reserve from '../components/Reserve'
 import Halls from '../components/Halls'
@@ -11,6 +12,18 @@ function dashboard() {
   const [content , setContent ] = useState({
     tab:2
   })
+  
+  const navigate = useNavigate()
+
+  const {user} = useSelector((state) => state.auth)
+  
+  useEffect(()=>{
+    if(!user){
+      navigate('/login')
+    }
+  },[user, navigate])
+
+
 
   const {tab} = content
   

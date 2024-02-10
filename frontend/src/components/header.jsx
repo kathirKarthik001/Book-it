@@ -24,7 +24,7 @@ function Header({onSelect}) {
 }
 
 // Register page
-   if(!user){
+   if(!user || user.message){
    
         return (
             <>

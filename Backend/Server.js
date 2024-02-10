@@ -12,7 +12,7 @@ const app = express()
 
 //MongoDB connect
 connectDB()
-ScheduledJob()
+// ScheduledJob()
 
 
 //req - parsers
