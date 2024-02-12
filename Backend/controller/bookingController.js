@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler')
 const Hall = require('../model/hallModel')
 const Booking = require('../model/bookingModel')
 const nodemailer = require('nodemailer');
+const User = require('../model/userModel')
 
 
 // @desc GET  all halls Booked
@@ -56,12 +57,17 @@ const bookHall = asyncHandler (async (req, res) =>{
 
     if(!hallId || !startTime || !endTime ||!event || !coordinator || !department){
         res.status(400)
+        console.log("Missing required fields");
         throw new Error('Please input all data')
     }
 
-    
+    if(!hallId || !startTime || !endTime ||!event || !coordinator || !department){
+        res.status(400)
+        throw new Error('Please input all data')
+    }
 
     hall = await Hall.findById(hallId)
+
     if(!hall){
         res.status(400)
         throw new Error('Hall does not exists')
@@ -69,7 +75,6 @@ const bookHall = asyncHandler (async (req, res) =>{
 
     const venue = hall.name
     
-
     const New_Booking = await Booking.create({
         userId:req.user.id,
         hallId:hallId,
@@ -157,8 +162,6 @@ const PendingBookings = asyncHandler(async (req, res) => {
       throw new Error('No pending bookings yet');
     }
 
-    sendEmail('kathirkarthik001@gmail,com','rame', 'Raam Prasath is a Goodu boy');
-  
     res.status(200);
     res.json(booking_data);
   });
@@ -179,8 +182,69 @@ const Decision = asyncHandler(async (req, res) => {
       throw new Error('Booking not found');
     }
 
-    const updated_Booking_data = await Booking.findByIdAndUpdate(req.params.id ,req.body,{new:true})
+    const updated_Booking_data = await Booking.findByIdAndUpdate(req.params.id ,{status},{new:true})
     
+    const userId = booking_data.userId
+    const userdata = await User.findById(userId)
+    const to = userdata.email
+    
+
+    if (status === 'approved') {
+        const subject = 'Booking Approved';
+        const text = 'Booking request approved by the admin';
+        const html = `
+            <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f0f0f0;">
+                <h2 style="color: #4CAF50; text-align: center;">${subject}</h2>
+                <p style="margin-bottom: 20px;">${text}</p>
+                <hr />
+                <div style="margin-top: 20px;">
+                    <p style="font-weight: bold;">Booking details:</p>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li><strong>Start Time:</strong> ${new Date(booking_data.startTime).toLocaleString()}</li>
+                        <li><strong>End Time:</strong> ${new Date(booking_data.endTime).toLocaleString()}</li>
+                        <li><strong>Venue:</strong> ${booking_data.venue}</li>
+                        <li><strong>Dept:</strong> ${booking_data.department}</li>
+                        <li><strong>Coordinator:</strong> ${booking_data.coordinator}</li>
+                    </ul>
+                </div>
+            </div>
+        `;
+        try {
+            await sendCustomEmail(to, subject, text, html);
+        } catch (error) {
+            console.log("Error:", error);
+        }
+    }
+    if (status === 'rejected') {
+        const subject = 'Booking Rejected';
+        const text = 'Booking request rejected by the admin';
+        const html = `
+            <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f0f0f0;">
+                <h2 style="color: #F44336; text-align: center;">${subject}</h2>
+                <p style="margin-bottom: 20px;">${text}</p>
+                <hr />
+                <div style="margin-top: 20px;">
+                    <p style="font-weight: bold;">Booking details:</p>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li><strong>Start Time:</strong> ${new Date(booking_data.startTime).toLocaleString()}</li>
+                        <li><strong>End Time:</strong> ${new Date(booking_data.endTime).toLocaleString()}</li>
+                        <li><strong>Venue:</strong> ${booking_data.venue}</li>
+                        <li><strong>Dept:</strong> ${booking_data.department}</li>
+                        <li><strong>Coordinator:</strong> ${booking_data.coordinator}</li>
+                    </ul>
+                </div>
+            </div>
+        `;
+        try {
+            await sendCustomEmail(to, subject, text, html);
+        } catch (error) {
+            console.log("Error:", error);
+        }
+    }
+  
+  
+    
+
     res.status(200);
     res.json(updated_Booking_data);
   });
@@ -203,29 +267,43 @@ module.exports ={
 
 
 
-// mailing
+// Mailing
 
 const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.net",
+    host: "smtp.gmail.com",
     port: 465,
     secure: true,
     auth: {
       user: "bookit.kasc@gmail.com",
-      pass: "Bookit@naveen",
+      pass: "wild yjyy xlih hhhc",
     },
   });
+  
+ 
+  const sendCustomEmail = async (to, subject, text, html) => {
+    // Define the email options
+    const mailOptions = {
+      from: {
+        name: 'Book it',
+        address: 'bookit.kasc@gmail.com'
+      },
+      to: to,
+      subject: subject,
+      text: text,
+      html: html,
+    };
+  
+    try {
+      await transporter.sendMail(mailOptions);
+      console.log("Email sent successfully");
+    } catch (error) {
+      console.log("Error sending email:", error);
+      throw new Error("Error sending email");
+    }
 
-  const mailOptions = await transporter.sendMail({
-    from: {
-        name:'Book it',
-        address:'bookit.kasc@gmail.com '
-    },
-    to: "bar@example.com, baz@example.com", // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "Hello world?", // plain text body
-    html: "<b>Hello world?</b>", // html body
-  });
 
-
-
-
+  };
+  
+  
+  
+  
