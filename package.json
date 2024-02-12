@@ -7,7 +7,7 @@
     "start": "node Backend/Server.js",
     "server": "nodemon Backend/Server.js",
     "client": "npm run dev --prefix frontend",
-    "dev":"concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Naveen S",
   "license": "MIT",
@@ -20,7 +20,8 @@
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.1.1",
-    "node-schedule": "^2.1.1"
+    "node-schedule": "^2.1.1",
+    "nodemailer": "^6.9.9"
   },
   "devDependencies": {
     "nodemon": "^3.0.3"

@@ -13,6 +13,11 @@ const bookingSchema = new mongoose.Schema(
             required: [true, 'Please provide a hall ID'],
             ref: 'Hall'     
         },
+        venue:{
+            type:String,
+            required: [true, 'Please provide a event venue'],
+            
+        },
         event:{
             type:String,
             required: [true, 'Please provide a event name'],

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Events() {
+function Events () {
   return (
     <div>Events</div>
   )

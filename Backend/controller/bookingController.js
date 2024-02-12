@@ -1,7 +1,7 @@
 const asyncHandler = require('express-async-handler')
 const Hall = require('../model/hallModel')
 const Booking = require('../model/bookingModel')
-
+const nodemailer = require('nodemailer');
 
 
 // @desc GET  all halls Booked
@@ -61,15 +61,19 @@ const bookHall = asyncHandler (async (req, res) =>{
 
     
 
-    hallExists = await Hall.findById(hallId)
-    if(!hallExists){
+    hall = await Hall.findById(hallId)
+    if(!hall){
         res.status(400)
         throw new Error('Hall does not exists')
     }
 
+    const venue = hall.name
+    
+
     const New_Booking = await Booking.create({
         userId:req.user.id,
         hallId:hallId,
+        venue:venue,
         event:event,
         coordinator : coordinator,
         department:department,
@@ -152,6 +156,8 @@ const PendingBookings = asyncHandler(async (req, res) => {
       res.status(400);
       throw new Error('No pending bookings yet');
     }
+
+    sendEmail('kathirkarthik001@gmail,com','rame', 'Raam Prasath is a Goodu boy');
   
     res.status(200);
     res.json(booking_data);
@@ -193,3 +199,33 @@ module.exports ={
     PendingBookings,
     Decision 
 }
+
+
+
+
+// mailing
+
+const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.net",
+    port: 465,
+    secure: true,
+    auth: {
+      user: "bookit.kasc@gmail.com",
+      pass: "Bookit@naveen",
+    },
+  });
+
+  const mailOptions = await transporter.sendMail({
+    from: {
+        name:'Book it',
+        address:'bookit.kasc@gmail.com '
+    },
+    to: "bar@example.com, baz@example.com", // list of receivers
+    subject: "Hello ✔", // Subject line
+    text: "Hello world?", // plain text body
+    html: "<b>Hello world?</b>", // html body
+  });
+
+
+
+
