@@ -26,10 +26,10 @@ export const pendingBookings = createAsyncThunk('booking/pendingBookings' , asyn
 })
 
 // Admin response 
-export const adminResponse = createAsyncThunk('booking/adminResponse' ,async(BookingID ,Decision , thunkAPI) =>{
+export const adminResponse = createAsyncThunk('booking/adminResponse' ,async({ BookingID, Decision } , thunkAPI) =>{
     try {
         const token = thunkAPI.getState().auth.user.token                       //getting token
-        return await bookingService.adminResponse(BookingID ,Decision , token)
+        return await bookingService.adminResponse(BookingID ,Decision, token)
         
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()

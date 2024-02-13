@@ -25,7 +25,7 @@ const adminResponse = async(BookingID,Decision,token) =>{
         }
     }
 
-    const response = await axios.patch(API_URI+BookingID , Decision , config)
+    const response = await axios.patch(API_URI + 'pending/'+ BookingID , { status: Decision } ,config)
 
     return response.data
 }
