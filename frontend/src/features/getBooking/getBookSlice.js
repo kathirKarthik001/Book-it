@@ -1,30 +1,45 @@
-// userBookingSlice.js
-
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import bookingService from './getBookService'; // Adjust import path
+// bookingSlice.js
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
+import bookingService from './getBookService';
 
 const initialState = {
   userBookings: [],
   loading: false,
-  isSuccess: false,
   error: null,
 };
 
-// Get User Bookings
 export const fetchUserBookings = createAsyncThunk(
   'booking/fetchUserBookings',
   async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.user.token;
+
     try {
-      const token = thunkAPI.getState().auth.user.token;
-      return await bookingService.getUserBookings(token); // Use bookingService
+      const response = await bookingService.getUserBookings(token);
+      return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
+export const deletePendingBooking = createAsyncThunk(
+  'booking/deletePendingBooking',
+  async (bookingId, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.user.token;
 
-const userBookingSlice = createSlice({
+    try {
+      await bookingService.deleteBooking(token, bookingId);
+      return bookingId;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+const userBooking = createSlice({
   name: 'userBooking',
   initialState,
   reducers: {},
@@ -41,7 +56,20 @@ const userBookingSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-    }
+      .addCase(deletePendingBooking.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(deletePendingBooking.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userBookings = state.userBookings.filter((booking) => booking._id !== action.payload);
+        toast.success('Pending bookings deleted');
+      })
+      .addCase(deletePendingBooking.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+        toast.error('Error deleting booking');
+      });
+  },
 });
 
-export default userBookingSlice.reducer;
+export default userBooking.reducer;
