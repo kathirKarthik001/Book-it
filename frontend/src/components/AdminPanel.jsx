@@ -1,45 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector , useDispatch } from 'react-redux';
-import {pendingBookings,adminResponse,reset} from '../features/bookings/bookingSlice'
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { pendingBookings, reset } from '../features/booking/bookingSlice';
 
 function AdminPanel() {
-  const dispatch = useDispatch()
-
-  const {Bookings , isLoading , isError , isSuccess , message} = useSelector((state) => state.booking)
-  const {user} = useSelector((state)=> state.auth)
- 
-  useEffect(()=>{
-    if (user && user.token && user.role === 'admin' && !isSuccess) {
-      dispatch(pendingBookings())
-      dispatch(reset()) 
-    }
-  },[])
-
+  const dispatch = useDispatch();
+  const { Bookings, isLoading, isError, message } = useSelector((state) => state.booking);
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (isError) {
       console.log(message);
     }
-    
-    if (isSuccess) {
-      dispatch(pendingBookings())
-      dispatch(reset()) 
+
+    if (user && user.token && user.role === 'admin') {
+      dispatch(pendingBookings());
     }
 
     return () => {
-      dispatch(reset())      
+      dispatch(reset());
     };
-  }, [dispatch ,isSuccess, isError, Bookings, message]);
-
-  const handleAction = (action , id) =>{
-    const response = action
-    dispatch(adminResponse({ BookingID: id, Decision: response }));
-
-    dispatch(pendingBookings())
-    dispatch(reset()) 
-  
-  }
-
+  }, [dispatch, isError, user, message]);
 
   return (
     <>
@@ -55,29 +35,28 @@ function AdminPanel() {
           </tr>
         </thead>
         <tbody>
-          {Bookings.length > 0 ? (
+          {isLoading ? (
+            <tr>
+              <td colSpan="6">Loading...</td>
+            </tr>
+          ) : isError ? (
+            <tr>
+              <td colSpan="6">Error: {message}</td>
+            </tr>
+          ) : Bookings.length > 0 ? (
             Bookings.map((booking) => (
               <tr key={booking._id}>
                 <td>{booking.event}</td>
-                <td>{booking.venue}</td>
-                <td>{booking.department}</td>
-                <td>
-                  {new Date(booking.startTime).toLocaleDateString('en-US')}{' || '}
-                  {new Date(booking.startTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}
-                </td>
-                <td>
-                  {new Date(booking.endTime).toLocaleDateString('en-US')}{' || '}
-                  {new Date(booking.endTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}
-                </td>
-                <td className='btns'>
-                <button className='approve_btn' onClick={() => handleAction('approved', booking._id)}>Approve</button>
-                <button className='reject_btn' onClick={() => handleAction('rejected', booking._id)}>Reject</button>
-                </td>
+                <td>{booking.hall}</td>
+                <td>{booking.dept}</td>
+                <td>{booking.start}</td>
+                <td>{booking.end}</td>
+                <td>{/* Action buttons or elements */}</td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="6">No Pending Bookings found</td>
+              <td colSpan="6">No Pending Bookings</td>
             </tr>
           )}
         </tbody>
