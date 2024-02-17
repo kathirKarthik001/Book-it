@@ -3,6 +3,10 @@ import authReducer from '../features/auth/authSlice'
 import bookingReducer from '../features/bookings/bookingSlice'
 import eventReducer from '../features/event/eventSlice'
 import userBookingReducer from '../features/mybookings/myBookingsSlice'
+import hallsReducer from '../features/hall/hallSlice'
+
+
+
 
 export const store = configureStore({
     reducer:{
@@ -10,5 +14,6 @@ export const store = configureStore({
         booking:bookingReducer,
         events:eventReducer,
         userBooking:userBookingReducer ,
+        halls:hallsReducer,
     }
 })

@@ -608,3 +608,101 @@ h2{
   }
 
 }
+
+
+/* Halls */
+
+.hall-creater{
+  display: flex;
+  align-items:center;
+  justify-content:right;
+}
+
+.create-btn{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: space-between;
+  font-size:medium;
+  background: #F5C3A6;
+  border-radius: 7px;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.del-btn{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: space-between;
+  font-size:larger;
+  background: #F5C3A6;
+  border-radius: 7px;
+  border: none;
+  padding: 5px;
+}
+.del-btn h4{
+  font-weight:bold;
+  cursor: pointer;
+}
+.del-btn img{
+  width: 40px;
+  height: 20px;
+  cursor: pointer;
+}
+
+
+
+.hall-container{
+  /* background-color: cornsilk; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+} 
+
+.hall-card{
+  border: 2px solid #9e9b9b;
+  border-radius: 10px;
+  width: 400px;
+  margin: 20px;
+}
+.hall-info{
+  display: flex;
+  align-items:center ;
+  justify-content: space-between;
+}
+.hall-info .info{
+  display: flex;
+  align-items:last baseline;
+  justify-content: center;
+  gap: 2px;
+  padding: 10px;
+}
+.hall-info h2{
+  color: #345B9E;
+  margin-bottom: auto;
+}
+.hall-info p{
+  color: #2e2b2b;
+}
+
+.hall-btns{
+  padding: 15px ;
+}
+.hall-info-btn{
+  background:transparent;
+  border: none;
+  width: 20px;
+  font-size: 17px;
+  margin-right: 10px;
+  font-style: normal;
+}
+.hall-details{
+  display:flex;
+  flex-direction:column;
+  align-items:first baseline;
+  justify-content: center;
+  padding: 5px;
+  margin-left: 10px;
+}
