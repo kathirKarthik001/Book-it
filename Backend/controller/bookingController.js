@@ -23,9 +23,9 @@ const GetBookings_Approved = asyncHandler(async(req, res)=>{
 
     // Check if any pending bookings were found
     if (Bookings_list.length === 0) {
-        res.status(400);
-        throw new Error('No approved bookings found');
-      }
+        res.status(200);
+        res.json(Bookings_list)
+    }
 
     res.status(200).json(Bookings_list)
 })
@@ -158,8 +158,8 @@ const PendingBookings = asyncHandler(async (req, res) => {
   
     // Check if any pending bookings were found
     if (booking_data.length === 0) {
-      res.status(400);
-      throw new Error('No pending bookings yet');
+      res.status(200);
+      res.json({message:'No pending bookings found'})
     }
 
     res.status(200);

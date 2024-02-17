@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector , useDispatch } from 'react-redux';
 import {pendingBookings,adminResponse,reset} from '../features/bookings/bookingSlice'
+import Spinner from '../components/Spinner'
 
 function AdminPanel() {
+
   const dispatch = useDispatch()
 
   const {Bookings , isLoading , isError , isSuccess , message} = useSelector((state) => state.booking)
@@ -21,28 +23,31 @@ function AdminPanel() {
       console.log(message);
     }
     
-    if (isSuccess) {
-      dispatch(pendingBookings())
-      dispatch(reset()) 
-    }
+    // if (isSuccess) {
+    //   dispatch(pendingBookings())
+    //   dispatch(reset()) 
+    // }
 
     return () => {
       dispatch(reset())      
     };
   }, [dispatch ,isSuccess, isError, Bookings, message]);
 
+  // handle admin action
   const handleAction = (action , id) =>{
     const response = action
-    dispatch(adminResponse({ BookingID: id, Decision: response }));
-
-    dispatch(pendingBookings())
-    dispatch(reset()) 
-  
+    dispatch(adminResponse({ BookingID: id, Decision: response }))
+    .then(() => {
+      dispatch(pendingBookings());
+      dispatch(reset());
+    });
   }
 
+  if (isLoading) return <Spinner />;
 
   return (
     <>
+    <div className="table-container">
       <table>
         <thead>
           <tr>
@@ -70,18 +75,21 @@ function AdminPanel() {
                   {new Date(booking.endTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}
                 </td>
                 <td className='btns'>
-                <button className='approve_btn' onClick={() => handleAction('approved', booking._id)}>Approve</button>
-                <button className='reject_btn' onClick={() => handleAction('rejected', booking._id)}>Reject</button>
+                  <div className='admin-btns'>
+                  <button className='approve_btn' onClick={() => handleAction('approved', booking._id)}>Approve</button>
+                  <button className='reject_btn' onClick={() => handleAction('rejected', booking._id)}>Reject</button>
+                </div>
                 </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="6">No Pending Bookings found</td>
+              <td colSpan="6"> No Pending Bookings found</td>
             </tr>
           )}
         </tbody>
       </table>
+    </div>
     </>
   );
 }

@@ -3,7 +3,7 @@ function reserveForm() {
   return (
     <>
     <h1>
-        Hall
+        Reserveform
     </h1>
     </>
   )

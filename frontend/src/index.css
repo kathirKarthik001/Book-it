@@ -9,6 +9,7 @@
 body {
   font-family: 'Poppins', sans-serif;
   height: 100vh;
+  cursor: pointer;
 }
 
 a {
@@ -57,6 +58,7 @@ h3 {
   padding: 20px 0;
   border-bottom: 1px solid #e6e6e6;
   margin-bottom: 30px;
+  cursor: pointer;
 }
 
 .header ul {
@@ -188,39 +190,7 @@ h3 {
   }
 }
 
-@media (max-width: 600px) {
-  .form {
-    width: 90%;
-  }
 
-  .heading h1 {
-    font-size: 2rem;
-  }
-
-  .heading p {
-    font-size: 1.5rem;
-  }
-
-  .header ul li {
-    margin-left: 10px;
-  }
-
-  .btn {
-    padding: 5px 5px;
-    border: 1px solid #000;
-    border-radius: 5px;
-    background: #000;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    text-align: center;
-    appearance: button;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
 
 
 p{
@@ -254,7 +224,17 @@ p{
   font-size: 1rem;
   font-family: sans-serif;
   font-weight: 400;
+  cursor: pointer;
 }
+
+
+/* Admin pannel */
+
+ .table-container {
+  overflow-x: auto;
+  cursor: pointer;
+}
+
 
 table {
   border-collapse: collapse;
@@ -266,6 +246,7 @@ td {
   border: 1px solid #eeeeee;
   padding: 8px;
   text-align: left;
+  white-space: nowrap;
 }
 
 th {
@@ -284,6 +265,45 @@ td:last-child {
 th{
   text-align: center;
 }
+
+.approve_btn{
+  background-color: transparent;
+  color: green;
+  border:none;
+  padding-right: 2px;
+  cursor: pointer;
+}
+
+.reject_btn{
+  background-color: transparent;
+  color: rgb(255, 0, 0);
+  border:none;
+  cursor: pointer;
+}
+
+.admin-btns{
+  align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5vh;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .card{
   border: 1px solid black;
   height: auto;
@@ -320,26 +340,271 @@ th{
 }
 
 
-.approve_btn{
-  background-color: transparent;
-  color: green;
-  border:none;
-  padding-right: 2px;
-}
 
-.reject_btn{
-  background-color: transparent;
-  color: rgb(255, 0, 0);
-  border:none;
-}
 
-.btns{
+.card{
+  border: 1px solid black;
+  height: auto;
+  width: 37vw;
+  padding: 8px;
+  margin: 20px;
+  margin-top: 50px;
+}
+.hall-element{
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  border: none;
+  padding: 7px;
+  font-family: sans-serif;
+  font-size: 32px;
+}
+.btn-reserve {
+  display: flex;
+  padding: 7px;
+  margin: 7px;
+  border-radius: 5px;
+  background-color: hsl(195, 76%, 49%);
+  color: black;
+  font-weight: 800;
+  width: 18vw;
+}
+.btn-reserve:hover{
+  background-color: hsl(195, 76%, 39%);
 }
 
-.booking_table tbody tr:nth-child(n+2) td.btns {
-  border-top: 1px solid #ddd;
+.h5-element{
+  display: flex;
+  align-items: center;
+  padding: 7px;
+}
+
+
+
+
+
+.no_bookings{
+  text-align: center;
+  margin: 50px;
+}
+
+.cards_container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+
+.card {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  width: 400px;
+  height: 300px;
+}
+
+.card-body {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: first baseline;
+  width: 400px;
+}
+.card-body h3{
+  text-align: center;
+  color:#345B9E;
+}
+
+.event_title{
+  width: 100%;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  margin-bottom: 10px;
+  font-weight: 500;
+  
+}
+
+
+
+
+
+/* My bookings  */
+.bookings_container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction:column;
+}
+.myBookings{
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-grow: inherit;
+  align-items: center;
+  align-self: center;
+}
+.booking-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  margin: 10px;
+  text-align: left;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+
+.status p {
+  margin: 0;
+  font-weight: 700;
+}
+
+.status.pending p {
+  color: #345B9E;
+}
+
+.status.approved p {
+  color: green;
+}
+
+.status.rejected p {
+  color: red;
+}
+
+.status.finished p {
+  color: grey;
+}
+
+.booking-details .heading{
+  color: #345B9E;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.delete-button{
+  background-color: transparent;
+  border: none;
+  color: rgb(0, 0, 0);
+}
+
+.booking-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h2{
+  color: #9C9A90;
+}
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .card-body {
+    padding: 7px;
+    width: 250px;
+  }
+  
+  .card-title {
+    width: 100%;
+    font-size: 1.25rem;
+    margin-bottom: 7px;
+  }
+
+  .card-text {
+    margin-bottom: 5px;
+  }
+
+  .btn {
+    padding: 3px 3px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background: #000;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    appearance: button;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+
+  header.tab{
+    font-size:3px;
+    background-color: #555;
+  }
+  .heading h1 {
+    font-size: 1.5rem;
+  }
+
+  .heading p {
+    font-size: 1rem;
+  }
+
+  .header ul li {
+    margin-left:7px;
+  }
+
+  .card-body {
+    padding: 10px;
+  }
+
+  .card {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    width: 300px;
+    height: 200px;
+  }
+
+  .card-title {
+    width: 100%;
+    font-size: 1.1rem;
+    margin-bottom: 3px;
+  }
+
+  .card-text {
+    margin-bottom: 3px;
+  }
+
+  .myBookings{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: inherit;
+    align-items: center;
+    align-self: center;
+  }
+
+  .btn {
+    padding: 2px 2px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background: #000;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    appearance: button;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1.5vh;
+    margin-right: 1vh;
+  }
+
 }
