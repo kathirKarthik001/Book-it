@@ -29,7 +29,7 @@ function AdminPanel() {
     // }
 
     return () => {
-      dispatch(reset())      
+      dispatch(reset());
     };
   }, [dispatch ,isSuccess, isError, Bookings, message]);
 
@@ -60,7 +60,15 @@ function AdminPanel() {
           </tr>
         </thead>
         <tbody>
-          {Bookings.length > 0 ? (
+          {isLoading ? (
+            <tr>
+              <td colSpan="6">Loading...</td>
+            </tr>
+          ) : isError ? (
+            <tr>
+              <td colSpan="6">Error: {message}</td>
+            </tr>
+          ) : Bookings.length > 0 ? (
             Bookings.map((booking) => (
               <tr key={booking._id}>
                 <td>{booking.event}</td>
