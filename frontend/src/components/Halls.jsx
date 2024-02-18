@@ -5,6 +5,7 @@ import {FaTrashAlt , FaEdit } from 'react-icons/fa'
 import create from '../assets/gridicons_create.svg'
 import {Link} from 'react-router-dom'
 import HallForm from './HallForm';
+import Spinner from './Spinner'
 
 function Halls() {
   
@@ -26,6 +27,9 @@ function Halls() {
   const handleEdit= () =>{}
   const handleDelete =() =>{}
 
+
+  if (isLoading) return <Spinner />;
+
   return (
     <>
     {showForm ? 
@@ -43,11 +47,7 @@ function Halls() {
       
       <div className="hall-container">
   
-  
-        {isLoading && <p>Loading...</p>}
-  
-        {isError && <p>{message}</p>}
-  
+
         {isSuccess && halls.map((hall) => (
   
           <div key={hall._id} className="hall-card">
