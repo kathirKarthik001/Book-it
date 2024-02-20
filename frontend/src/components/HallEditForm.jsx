@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import back from '../assets/entypo_back.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { createHalls, reset } from '../features/hall/hallSlice';
+import { reset, updateHalls } from '../features/hall/hallSlice';
 import { toast } from 'react-toastify';
 
-function HallForm({ onCancel }) {
+function HallEditForm({ hall,onCancel }) {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
-    name: '',
-    capacity: '',
-    location: '',
-    inChargePerson: '',
-    contactNumber: '',
-    amenities: 'a/c',
+    name:hall.name,
+    capacity:hall.capacity,
+    location:hall.location,
+    inChargePerson:hall.inChargePerson,
+    contactNumber: hall.contactNumber,
+    amenities: hall.amenities,
   });
   const { isSuccess, isError, message } = useSelector((state) => state.halls);
 
@@ -38,7 +38,8 @@ function HallForm({ onCancel }) {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    dispatch(createHalls(formData));
+    console.log('edit button clicked')
+    dispatch(updateHalls(hall._id,formData));
   };
 
   return (
@@ -76,7 +77,7 @@ function HallForm({ onCancel }) {
         </div>
         <div className="form-group">
           <button type="submit" className="btn btn-block submit r-submit">
-            Submit
+            Update
           </button>
         </div>
       </form>
@@ -84,4 +85,4 @@ function HallForm({ onCancel }) {
   );
 }
 
-export default HallForm;
+export default HallEditForm;
