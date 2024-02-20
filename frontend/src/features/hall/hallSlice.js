@@ -29,10 +29,11 @@ export const createHalls = createAsyncThunk('booking/createHalls' , async(hallDa
 })
 
 // update Halls
-export const updateHalls = createAsyncThunk('booking/updateHalls' , async(hallId,hallData,thunkAPI) =>{
+export const updateHalls = createAsyncThunk('booking/updateHalls' , async({hallId,hallData},thunkAPI) =>{
     try { 
+        console.log(hallData)
         const token = thunkAPI.getState().auth.user.token       //getting token
-        return await hallService .updateHalls(token , hallId , hallData)
+        return await hallService .updateHalls( hallId , hallData , token)
 
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()

@@ -25,7 +25,7 @@ const createHalls = async(token , hallData) =>{
     return response.data
 }
 
-const updateHalls = async(token , hallId , hallData) =>{
+const updateHalls = async( hallId , hallData ,token) =>{
     const config = {
         headers:{
             Authorization:`Bearer ${token}`,

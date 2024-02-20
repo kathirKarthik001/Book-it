@@ -39,7 +39,7 @@ function HallEditForm({ hall,onCancel }) {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log('edit button clicked')
-    dispatch(updateHalls(hall._id,formData));
+    dispatch(updateHalls({hallId:hall._id , hallData:formData}));
   };
 
   return (
