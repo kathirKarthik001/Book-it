@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import DashBoard from './pages/dashboard'
 import Register from './pages/register'
 import Login from './pages/login'
+import BookingForm from './components/Bookingform';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path='/' element={<DashBoard/>} />
           <Route path='/login' element={<Login/>} />
           <Route path='/register' element={<Register/>} />
+          <Route path='/reserve/:hallId' element={<BookingForm />}/>
         </Routes>
         
       </div>

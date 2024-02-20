@@ -706,3 +706,47 @@ h2{
   padding: 5px;
   margin-left: 10px;
 }
+
+
+
+/* Booking form */
+
+.parallel-input{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:space-between;
+  flex-wrap: wrap;
+}
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #3a3535c1;
+}
+
+/* input[type="text"], */
+input[type="date"],
+input[type="time"] {
+  /* width: 100%; */
+  width:220px ;
+  padding: 8px;
+  /* border: 1px solid #ccc; */
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
