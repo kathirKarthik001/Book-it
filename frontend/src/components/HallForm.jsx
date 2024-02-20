@@ -54,19 +54,19 @@ function HallForm({ onCancel }) {
 
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <input type="text" className="form-control" id="name" name="name" placeholder="Enter hall name" value={formData.name} onChange={onChange} />
+          <input type="text" className="form-control" id="name" name="name" placeholder="Enter hall name" value={formData.name} onChange={onChange} required/>
         </div>
         <div className="form-group">
-          <input type="number" className="form-control" id="capacity" name="capacity" placeholder="Enter hall capacity" value={formData.capacity} onChange={onChange} />
+          <input type="number" className="form-control" id="capacity" name="capacity" placeholder="Enter hall capacity" value={formData.capacity} onChange={onChange} required/>
         </div>
         <div className="form-group">
-          <input type="text" className="form-control" id="location" name="location" placeholder="Enter hall location" value={formData.location} onChange={onChange} />
+          <input type="text" className="form-control" id="location" name="location" placeholder="Enter hall location" value={formData.location} onChange={onChange} required />
         </div>
         <div className="form-group">
-          <input type="text" className="form-control" id="inChargePerson" name="inChargePerson" placeholder="Enter your inChargePerson" value={formData.inChargePerson} onChange={onChange} />
+          <input type="text" className="form-control" id="inChargePerson" name="inChargePerson" placeholder="Enter your inChargePerson" value={formData.inChargePerson} onChange={onChange} required />
         </div>
         <div className="form-group">
-          <input type="tel" className="form-control" id="contactNumber" name="contactNumber" placeholder="Enter your contactNumber" value={formData.contactNumber} onChange={onChange} />
+          <input type="tel" className="form-control" id="contactNumber" name="contactNumber" placeholder="Enter your contactNumber" value={formData.contactNumber} onChange={onChange} required/>
         </div>
         <div className="form-group">
           <select name="amenities" id="amenities" value={formData.amenities} onChange={onChange}>

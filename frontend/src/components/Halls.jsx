@@ -13,7 +13,7 @@ function Halls() {
   const dispatch = useDispatch();
   const { halls, isSuccess, isError, isLoading ,message} = useSelector((state) => state.halls);
 
-// Toggling - Create Form  functionality 
+// Toggling - Create Form 
   const [showForm, setShowForm] = useState(false);
   const toggleForm = () =>{
     dispatch(reset())
@@ -21,7 +21,7 @@ function Halls() {
   }
 
 
-// Toggle Edit form
+// Togglling - Edit form 
  const [editingHall , setEditingHall] = useState({})
  const [showEditForm, setEditShowForm] = useState(false);
 
@@ -31,6 +31,8 @@ function Halls() {
   }
 
 
+
+  
   useEffect(() => {
     dispatch(getHalls());
   }, []);
@@ -47,6 +49,13 @@ function Halls() {
     })
   },[dispatch , showForm])
   
+  useEffect(()=>{
+    if(!showEditForm){
+      dispatch(getHalls())
+    }   
+  },[showEditForm])
+
+
 
 
 // Delete functionality
@@ -62,8 +71,6 @@ function Halls() {
     setEditingHall(hall)
     toggleEditForm()
   };
-
-
 
 
 
