@@ -750,3 +750,14 @@ input[type="time"] {
 }
 
 
+/* Reserve Page */
+.Book-btn{
+  background-color: #1f4990;
+  color: white;
+  border-radius: 5px;
+  border:none;
+  font-size: x-large;
+  padding: 7px 40px;
+  margin: 5px;
+
+}
