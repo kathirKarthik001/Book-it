@@ -71,14 +71,6 @@ function Bookingform({ hall  ,onCancel }) {
           department: bookingInfo.department,
         };
 
-        console.log(bookingInfo.startTime)
-        console.log(bookingInfo.startDate)
-        console.log(startDateTime)
-        console.log(bookingInfo.endTime)
-        console.log(bookingInfo.endDate)
-        console.log(endDateTime)
-
-        console.log(bookingData)
       
         dispatch(makeBooking(bookingData))
       };

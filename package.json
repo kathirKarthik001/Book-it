@@ -1,5 +1,5 @@
 {
-  "name": "hbs",
+  "name": "Book it",
   "version": "1.0.0",
   "description": "Digital Hall booking system",
   "main": "Server.js",
@@ -9,7 +9,7 @@
     "client": "npm run dev --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "Naveen S",
+  "author": "Kathir Karthik M",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
