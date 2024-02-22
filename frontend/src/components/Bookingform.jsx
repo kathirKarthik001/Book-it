@@ -31,6 +31,10 @@ function Bookingform({ hall  ,onCancel }) {
           onCancel();
         }
 
+        if(isError){
+          toast.error(message)
+        }
+
         dispatch(clearMessage());
 
     }, [isError, isSuccess, message, onCancel, dispatch]);
@@ -52,6 +56,8 @@ function Bookingform({ hall  ,onCancel }) {
           return;
         }
 
+       
+
         // Convert start time and end time to Date objects
         const startDateTime = convertToISOString(bookingInfo.startDate, bookingInfo.startTime);
         const endDateTime = convertToISOString(bookingInfo.endDate, bookingInfo.endTime);
@@ -65,29 +71,35 @@ function Bookingform({ hall  ,onCancel }) {
           department: bookingInfo.department,
         };
 
+        console.log(bookingInfo.startTime)
+        console.log(bookingInfo.startDate)
+        console.log(startDateTime)
+        console.log(bookingInfo.endTime)
+        console.log(bookingInfo.endDate)
+        console.log(endDateTime)
+
         console.log(bookingData)
       
         dispatch(makeBooking(bookingData))
       };
 
 
-    // function to convert to ISO string format
       function convertToISOString(InputDate, InputTime) {
-
         if (!InputDate || !InputTime) {
-            console.error('InputDate or InputTime is undefined');
-            return null
+          console.error("InputDate or InputTime is undefined");
+          return null;
         }
-        
+      
         // Parse the date and time strings
-        const [year, month, day] = InputDate.split('-').map(Number);
-        const [hours, minutes] = InputTime.split(':').map(Number);
-
+        const [year, month, day] = InputDate.split("-").map(Number);
+        const [hours, minutes] = InputTime.split(":").map(Number);
+      
         // Construct a new Date object with the parsed values
-        const date = new Date(year, month - 1, day, hours, minutes);
-
+        const date = new Date(Date.UTC(year, month - 1, day, hours, minutes)); // Using Date.UTC to ensure UTC time
+      
         return date.toISOString();
-    }
+      }
+      
 
     if (isLoading) {
         return <Spinner />;

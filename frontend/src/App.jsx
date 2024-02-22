@@ -19,7 +19,6 @@ function App() {
           <Route path='/' element={<DashBoard/>} />
           <Route path='/login' element={<Login/>} />
           <Route path='/register' element={<Register/>} />
-          <Route path='/reserve/:hallId' element={<BookingForm />}/>
         </Routes>
         
       </div>

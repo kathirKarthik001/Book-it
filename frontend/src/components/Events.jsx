@@ -13,10 +13,11 @@ function EventComponent() {
 
   if (loading) return <Spinner />;
 
+
   return (
   <div>
       <h2>Approved Events</h2>
-
+    
       {approvedBookings.length === 0 ? (
           <div className="no_bookings"> No approved events yet. </div>
       ) : (
@@ -28,10 +29,16 @@ function EventComponent() {
                   <h3 className="card-title">{booking.event}</h3>
                   </div>
                   <p className="card-text"><b>Department:</b> {booking.department}</p>
-                  <p className="card-text"><b>Start Time:</b>{new Date(booking.startTime).toLocaleDateString('en-US')}{'  '}
+                  {/* <p className="card-text"><b>Start Time:</b>{new Date(booking.startTime).toLocaleDateString('en-US')}{'  '}
                           {new Date(booking.startTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}</p>
-                  <p className="card-text"><b>End Time: </b>{new Date(booking.startTime).toLocaleDateString('en-US')}{'  '}
-                          {new Date(booking.startTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}</p>
+                  <p className="card-text"><b>End Time: </b>{new Date(booking.endTime).toLocaleDateString('en-US')}{'  '}
+                          {new Date(booking.endTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}</p> */}
+
+                  <p className="card-text"><b>Start Time:</b>{new Date(Date.parse(booking.startTime)).toLocaleDateString('en-US', { timeZone: 'UTC' })} {'  '}
+                      {new Date(Date.parse(booking.startTime)).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'UTC' })}</p>
+                  <p className="card-text"><b>End Time: </b>{new Date(Date.parse(booking.endTime)).toLocaleDateString('en-US', { timeZone: 'UTC' })} {'  '}
+                      {new Date(Date.parse(booking.endTime)).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'UTC' })}</p>
+
                           <p className="card-text"><b>Coordinator:</b> {booking.coordinator}</p>
                   <p className="card-text"><b>Venue: </b>{booking.venue}</p>
                 </div>

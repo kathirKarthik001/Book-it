@@ -75,12 +75,12 @@ function AdminPanel() {
                 <td>{booking.venue}</td>
                 <td>{booking.department}</td>
                 <td>
-                  {new Date(booking.startTime).toLocaleDateString('en-US')}{' || '}
-                  {new Date(booking.startTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}
+                {new Date(Date.parse(booking.startTime)).toLocaleDateString('en-US', { timeZone: 'UTC' })} {' || '}
+                {new Date(Date.parse(booking.startTime)).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'UTC' })}
                 </td>
                 <td>
-                  {new Date(booking.endTime).toLocaleDateString('en-US')}{' || '}
-                  {new Date(booking.endTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}
+                {new Date(Date.parse(booking.endTime)).toLocaleDateString('en-US', { timeZone: 'UTC' })} {' || '}
+                {new Date(Date.parse(booking.endTime)).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'UTC' })}
                 </td>
                 <td className='btns'>
                   <div className='admin-btns'>

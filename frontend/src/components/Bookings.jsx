@@ -72,11 +72,15 @@ function Bookings() {
                   <hr/>
                 </div>
                 <div className="booking-details">
+                  
                   <p className='heading'>{booking.event}</p>
-                  <p>Start Time : {new Date(booking.startTime).toLocaleDateString('en-US')}{'  '}
-                          {new Date(booking.startTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}</p>
-                  <p>End Time : {new Date(booking.endTime).toLocaleDateString('en-US')}{'  '}
-                          {new Date(booking.endTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}</p>
+
+                  <p className="card-text"><b>Start Time:</b>{new Date(Date.parse(booking.startTime)).toLocaleDateString('en-US', { timeZone: 'UTC' })} {'  '}
+                      {new Date(Date.parse(booking.startTime)).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'UTC' })}</p>
+
+                  <p className="card-text"><b>End Time: </b>{new Date(Date.parse(booking.endTime)).toLocaleDateString('en-US', { timeZone: 'UTC' })} {'  '}
+                      {new Date(Date.parse(booking.endTime)).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'UTC' })}</p>
+
                   <p>Venue : {booking.venue}</p>
                 </div>
               </div>
