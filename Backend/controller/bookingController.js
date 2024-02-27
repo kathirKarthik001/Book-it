@@ -274,8 +274,8 @@ const transporter = nodemailer.createTransport({
     port: 465,
     secure: true,
     auth: {
-      user: "bookit.kasc@gmail.com",
-      pass: "wild yjyy xlih hhhc",
+      user: "bookit.hbs@gmail.com",
+      pass: "yqmb yaru tdsv lype",
     },
   });
   
@@ -285,7 +285,7 @@ const transporter = nodemailer.createTransport({
     const mailOptions = {
       from: {
         name: 'Book it',
-        address: 'bookit.kasc@gmail.com'
+        address: 'bookit.hbs@gmail.com'
       },
       to: to,
       subject: subject,

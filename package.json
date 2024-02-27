@@ -1,5 +1,5 @@
 {
-  "name": "Book it",
+  "name": "Bookit",
   "version": "1.0.0",
   "description": "Digital Hall booking system",
   "main": "Server.js",
