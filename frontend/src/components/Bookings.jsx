@@ -26,6 +26,20 @@ function Bookings() {
     }
   };
 
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = String(date.getUTCDate()).padStart(2, '0');
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const year = date.getUTCFullYear();
+  
+    return `${day}/${month}/${year}`;
+  }
+  
+  function formatTime(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleTimeString('en-GB', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'UTC' });
+  }
+
   if (loading) return <Spinner />;
 
   return (
@@ -75,11 +89,17 @@ function Bookings() {
                   
                   <p className='heading'>{booking.event}</p>
 
-                  <p className="card-text"><b>Start Time:</b>{new Date(Date.parse(booking.startTime)).toLocaleDateString('en-US', { timeZone: 'UTC' })} {'  '}
-                      {new Date(Date.parse(booking.startTime)).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'UTC' })}</p>
+                  <p className="card-text">
+                        <b>End Time: </b>
+                        {formatDate(booking.startTime)} {' '}
+                        {formatTime(booking.startTime)}
+                      </p>
 
-                  <p className="card-text"><b>End Time: </b>{new Date(Date.parse(booking.endTime)).toLocaleDateString('en-US', { timeZone: 'UTC' })} {'  '}
-                      {new Date(Date.parse(booking.endTime)).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'UTC' })}</p>
+                      <p className="card-text">
+                        <b>End Time: </b>
+                        {formatDate(booking.endTime)} {' '}
+                        {formatTime(booking.endTime)}
+                      </p>
 
                   <p>Venue : {booking.venue}</p>
                 </div>

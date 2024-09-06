@@ -272,6 +272,7 @@ th{
   border:none;
   padding-right: 2px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .reject_btn{
@@ -279,6 +280,7 @@ th{
   color: rgb(255, 0, 0);
   border:none;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .admin-btns{

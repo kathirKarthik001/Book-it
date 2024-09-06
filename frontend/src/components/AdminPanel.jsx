@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector , useDispatch } from 'react-redux';
 import {pendingBookings,adminResponse,reset} from '../features/bookings/bookingSlice'
 import Spinner from '../components/Spinner'
+import { toast } from 'react-toastify';
 
 function AdminPanel() {
 
@@ -25,6 +26,7 @@ function AdminPanel() {
     
     // if (isSuccess) {
     //   dispatch(pendingBookings())
+    //   toast.success('success')
     //   dispatch(reset()) 
     // }
 
@@ -41,6 +43,20 @@ function AdminPanel() {
       dispatch(pendingBookings());
       dispatch(reset());
     });
+  }
+
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = String(date.getUTCDate()).padStart(2, '0');
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const year = date.getUTCFullYear();
+  
+    return `${day}/${month}/${year}`;
+  }
+  
+  function formatTime(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleTimeString('en-GB', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'UTC' });
   }
 
   if (isLoading) return <Spinner />;
@@ -75,12 +91,12 @@ function AdminPanel() {
                 <td>{booking.venue}</td>
                 <td>{booking.department}</td>
                 <td>
-                {new Date(Date.parse(booking.startTime)).toLocaleDateString('en-US', { timeZone: 'UTC' })} {' || '}
-                {new Date(Date.parse(booking.startTime)).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'UTC' })}
+                  {formatDate(booking.startTime)} {' - '}
+                  {formatTime(booking.startTime)}
                 </td>
                 <td>
-                {new Date(Date.parse(booking.endTime)).toLocaleDateString('en-US', { timeZone: 'UTC' })} {' || '}
-                {new Date(Date.parse(booking.endTime)).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'UTC' })}
+                  {formatDate(booking.endTime)} {' - '}
+                  {formatTime(booking.endTime)}
                 </td>
                 <td className='btns'>
                   <div className='admin-btns'>
