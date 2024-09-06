@@ -6,7 +6,6 @@ const checkForConflicts = asyncHandler(async (req, res, next) => {
 
   // Find bookings that overlap with the new booking, excluding the booking being edited
   const overlappingBookings = await Booking.find({
-    _id: { $ne: req.params.id },
     hallId: hallId,
     status:{$ne: 'rejected' },
     status:{$ne: 'finished' },
@@ -19,10 +18,13 @@ const checkForConflicts = asyncHandler(async (req, res, next) => {
   // Check if any overlapping bookings were found
   if (overlappingBookings.length > 0) {
     res.status(409);
-    throw new Error('Already Booked on this time interval');
+    throw new Error('Slot taken so try a differnt slot !');
   }
+  else{
+    next();
+  } 
 
-  next();
+  
 });
 
 module.exports = { checkForConflicts };

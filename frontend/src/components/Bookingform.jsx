@@ -27,8 +27,9 @@ function Bookingform({ hall  ,onCancel }) {
 
     useEffect(() => {
         if (isSuccess) {
-          toast.success('Successfully Booked..');
           onCancel();
+          console.log('success')
+          toast.success('Successfully Booked..');
         }
 
         if(isError){
@@ -56,11 +57,35 @@ function Bookingform({ hall  ,onCancel }) {
           return;
         }
 
-       
+        console.log(bookingInfo.startDate,bookingInfo.startTime)
+        console.log(bookingInfo.endDate,bookingInfo.endTime)
+
 
         // Convert start time and end time to Date objects
         const startDateTime = convertToISOString(bookingInfo.startDate, bookingInfo.startTime);
         const endDateTime = convertToISOString(bookingInfo.endDate, bookingInfo.endTime);
+
+        console.log(startDateTime , 'and ' ,endDateTime)
+
+        let current = new Date()
+        current.setHours(current.getHours() + 5);
+        current.setMinutes(current.getMinutes() + 30);
+        current = current.toISOString()
+
+        if(startDateTime <= current){
+          console.log('less than current')
+          toast.error('invalid start date or time')
+          return
+        }
+
+        if(endDateTime <= startDateTime){
+          console.log('invalid end date')
+          toast.error('invalid end date or time')
+          return
+        }
+
+  
+        // sending to server
     
         const bookingData = {
           hallId:hall._id,
@@ -73,6 +98,7 @@ function Bookingform({ hall  ,onCancel }) {
 
       
         dispatch(makeBooking(bookingData))
+
       };
 
 
@@ -87,7 +113,7 @@ function Bookingform({ hall  ,onCancel }) {
         const [hours, minutes] = InputTime.split(":").map(Number);
       
         // Construct a new Date object with the parsed values
-        const date = new Date(Date.UTC(year, month - 1, day, hours, minutes)); // Using Date.UTC to ensure UTC time
+        const date = new Date(Date.UTC(year, month - 1, day, hours, minutes));
       
         return date.toISOString();
       }

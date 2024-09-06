@@ -15,6 +15,7 @@ function App() {
     <Router>
       
       <div className="container">
+        <ToastContainer/>
         <Routes>
           <Route path='/' element={<DashBoard/>} />
           <Route path='/login' element={<Login/>} />
@@ -25,7 +26,7 @@ function App() {
 
     </Router>
 
-    <ToastContainer/>
+    
 
     </>
     
