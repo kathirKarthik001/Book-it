@@ -64,36 +64,36 @@ function Login() {
   return (
     <>
 
-    <section className="heading">
-        <Logo width='230px'/>
-        <h1>LOGIN</h1>
-        <p>login and book your slot</p>
-    </section>
-    
-    <section className="form">
-      <form onSubmit={onSubmit}>
-
-        <div className="form-group">
-            <input type="email" className="form-control" id='email'name='email' placeholder='Enter your email' value={email} onChange={onChange} />
-        </div>
-        <div className="form-group">
-            <input type="password" className="form-control" id='password'name='password' placeholder='Enter your password' value={password} onChange={onChange} />
-        </div>
-
-        <div className="form-group">
-          <button type='submit' className='btn btn-block'>
-            Login
-          </button>
-        </div>
+        <section className="heading" >
+            <Logo width='230px'/>
+            <h1>LOGIN</h1>
+            <p>login and book your slot</p>
+        </section>
         
-      </form>
-    </section>
+        <section className="form"  >
+          <form onSubmit={onSubmit}>
 
-    <section className='footer'>
-      <p>Don't have an account ? 
-        <Link to={'/register'} style={{color:"blue"}}> register now</Link>
-      </p>
-    </section>
+            <div className="form-group">
+                <input type="email" className="form-control" id='email'name='email' placeholder='Enter your email' value={email} onChange={onChange} />
+            </div>
+            <div className="form-group">
+                <input type="password" className="form-control" id='password'name='password' placeholder='Enter your password' value={password} onChange={onChange} />
+            </div>
+
+            <div className="form-group">
+              <button type='submit' className='btn btn-block'>
+                Login
+              </button>
+            </div>
+            
+          </form>
+        </section>
+
+        <section className='footer' >
+          <p>Don't have an account ? 
+            <Link to={'/register'} style={{color:"blue"}}> register now</Link>
+          </p>
+        </section>
 
     </>
   )
