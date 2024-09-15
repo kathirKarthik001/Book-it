@@ -41,7 +41,7 @@ function Header({ onSelect }) {
         <div className="logo">
           <Link to='/'> <Logo width='70px' /> </Link>
         </div>
-        <div>
+        <div className='head-register'>
           <h1>Register</h1>
         </div>
         <Link to='/login'>
