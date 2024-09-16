@@ -3,6 +3,7 @@ import back from '../assets/entypo_back.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { createHalls, reset } from '../features/hall/hallSlice';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 function HallForm({ onCancel }) {
   const dispatch = useDispatch();
@@ -24,7 +25,11 @@ function HallForm({ onCancel }) {
 
     if (isSuccess) {
       dispatch(reset());
-      onCancel()
+      toast.success('updation successful !')
+      setTimeout(() => {
+        onCancel()
+      }, 10000);
+      
     }
 
   }, [isError, isSuccess, message, onCancel, dispatch]);

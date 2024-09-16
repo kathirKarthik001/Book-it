@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import DashBoard from './pages/dashboard'
 import Register from './pages/register'
 import Login from './pages/login'
-import BookingForm from './components/Bookingform';
 
 
 function App() {

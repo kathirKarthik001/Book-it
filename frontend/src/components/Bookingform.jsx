@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {makeBooking, clearMessage } from '../features/book/bookslice';
 import Spinner from './Spinner';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import back from '../assets/entypo_back.svg';
 
 
