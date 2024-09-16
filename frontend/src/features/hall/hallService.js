@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URI = '/api/hall/'
+const API_URI = import.meta.env.VITE_API_URI_HALL;
 
 const getHalls = async(token) =>{
     const config = {

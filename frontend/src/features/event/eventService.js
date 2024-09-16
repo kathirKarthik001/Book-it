@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URI = '/api/booking/';
+const API_URI = import.meta.env.VITE_API_URI_BOOK;
 
 const getApproved = async (token) => {
   const config = {
