@@ -64,6 +64,10 @@ h3 {
   cursor: pointer;
 }
 
+.underline{
+  text-decoration: underline;
+}
+
 
 .header ul {
   display: flex;
@@ -929,6 +933,7 @@ input[type="time"] {
   font-size: x-large;
   padding: 7px 40px;
   margin: 5px;
+  width: 93%;
 
 }
 

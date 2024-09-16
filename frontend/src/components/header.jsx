@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout, reset } from '../features/auth/authSlice';
 import { useState, useEffect } from 'react';
 
-function Header({ onSelect }) {
+function Header({ onSelect , activetab }) {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -68,25 +68,25 @@ function Header({ onSelect }) {
             {role === 'admin' ? (
               <>
                 <li>
-                  <button className='tab' onClick={() => onTouch(1)}> Home</button>
+                  <button className={`tab ${activetab == 1 && 'underline'}`}  onClick={() => onTouch(1)}> Home</button>
                 </li>
                 <li>
-                  <button className='tab' onClick={() => onTouch(2)}>Events</button>
+                  <button className={`tab ${activetab == 2 && 'underline'}`}onClick={() => onTouch(2)}>Events</button>
                 </li>
                 <li>
-                  <button className='tab' onClick={() => onTouch(3)}>Halls</button>
+                  <button className={`tab ${activetab == 3 && 'underline'}`}onClick={() => onTouch(3)}>Halls</button>
                 </li>
               </>
             ) : (
               <>
                 <li>
-                  <button className='tab' onClick={() => onTouch(4)}>Reserve</button>
+                  <button className={`tab ${activetab == 4 && 'underline'}`} onClick={() => onTouch(4)}>Reserve</button>
                 </li>
                 <li>
-                  <button className='tab' onClick={() => onTouch(2)}>Events</button>
+                  <button className={`tab ${activetab == 2 && 'underline'}`} onClick={() => onTouch(2)}>Events</button>
                 </li>
                 <li>
-                  <button className='tab' onClick={() => onTouch(5)}>Bookings</button>
+                  <button className={`tab ${activetab == 5 && 'underline'}`} onClick={() => onTouch(5)}>Bookings</button>
                 </li>
               </>
             )}

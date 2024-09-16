@@ -35,7 +35,7 @@ function dashboard() {
 
   return (
         <>
-          <Header onSelect={(newChoice) => onChange(newChoice)} />
+          <Header onSelect={(newChoice) => onChange(newChoice)} activetab = {content.tab} />
           <section className="context">
             {tab === 2 ? (
               <Events />

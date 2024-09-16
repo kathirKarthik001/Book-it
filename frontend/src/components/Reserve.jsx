@@ -36,7 +36,6 @@ function Reserve() {
       <BookingForm   hall ={hall}  onCancel={() => setShowForm(false)} /> 
     )
     :(
-
       <div >
         <h2> Reserve Hall </h2>
 
