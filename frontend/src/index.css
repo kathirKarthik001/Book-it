@@ -184,6 +184,15 @@ h3 {
   .header .btn {
     margin-left: auto;
   }
+
+  .parallel-input{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-between;
+    gap: 1rem;
+    flex-wrap: wrap;  
+  }
 }
 
 /* Medium screen styles (tablets in landscape) */
@@ -281,6 +290,16 @@ h3 {
     text-align: center;
     margin-bottom: 40px;
   }
+
+  .parallel-input{
+    background-color: red;
+    display:flex;
+    gap: 20px;
+    width: 100%;
+    
+  }
+
+ 
 }
 
 /* Extra small screen styles (small mobile phones) */
@@ -296,6 +315,7 @@ h3 {
   .header .btn {
     width: 75%;
   }
+
 }
 
 
@@ -886,8 +906,7 @@ h2{
   align-items: center;
   justify-content:space-between;
   gap: 1rem;
-  flex-wrap: wrap;
-  
+  flex-wrap: wrap;  
 }
 
 form {
@@ -936,4 +955,5 @@ input[type="time"] {
   width: 93%;
 
 }
+
 
