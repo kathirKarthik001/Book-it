@@ -184,7 +184,7 @@ h3 {
   .header .btn {
     margin-left: auto;
   }
-
+  
   .parallel-input{
     display: flex;
     flex-direction: row;
@@ -193,6 +193,8 @@ h3 {
     gap: 1rem;
     flex-wrap: wrap;  
   }
+
+  
 }
 
 /* Medium screen styles (tablets in landscape) */
@@ -291,15 +293,6 @@ h3 {
     margin-bottom: 40px;
   }
 
-  .parallel-input{
-    background-color: red;
-    display:flex;
-    gap: 20px;
-    width: 100%;
-    
-  }
-
- 
 }
 
 /* Extra small screen styles (small mobile phones) */
@@ -316,6 +309,15 @@ h3 {
     width: 75%;
   }
 
+
+  /* Parallel Input */
+
+  .parallel-input .form-group{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
 }
 
 
@@ -381,7 +383,6 @@ h3 {
     transform: rotate(360deg);
   }
 }
-
 
 
 
@@ -479,16 +480,6 @@ th{
 
 
 
-
-
-
-
-
-
-
-
-
-
 .card{
   border: 1px solid black;
   height: auto;
@@ -561,8 +552,6 @@ th{
   align-items: center;
   padding: 7px;
 }
-
-
 
 
 
@@ -905,8 +894,8 @@ h2{
   flex-direction: row;
   align-items: center;
   justify-content:space-between;
+  flex-wrap: wrap;
   gap: 1rem;
-  flex-wrap: wrap;  
 }
 
 form {
