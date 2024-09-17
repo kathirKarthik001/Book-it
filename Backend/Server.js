@@ -14,6 +14,10 @@ const app = express()
 connectDB()
 ScheduledJob()
 
+app.use(cors({
+    origin: 'https://book-it-mern-app-mk.vercel.app/' // frontend URL
+  }));
+
 
 //req - parsers
 app.use(express.json())
