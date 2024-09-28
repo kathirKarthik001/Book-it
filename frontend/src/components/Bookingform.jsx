@@ -26,15 +26,14 @@ function Bookingform({ hall  ,onCancel }) {
         endTime: '',
       });
 
-    useEffect(() => {
+      useEffect(() => {
         if (isSuccess) {
-          onCancel();
-          console.log('success')
           toast.success('Successfully Booked..');
+          onCancel();
         }
-
-        if(isError){
-          toast.error(message)
+      
+        if (isError) {
+          toast.error(message);
         }
 
         dispatch(clearMessage());
