@@ -4,10 +4,10 @@ BOOK IT is a digital hall booking system developed using the Vite MERN stack in 
 
 ## Features
 
-- **User Authentication**: Users can register, login, and manage their accounts securely.
+- **User Authentication**: Role based authentication, users can register, login, and manage their accounts securely.
 - **Hall Booking**: Users can browse available halls, book them for events, and manage their bookings.
 - **Mailing System**: Integrated mailing system for sending notifications to users regarding booking status updates and other relevant information.
-- **Scheduled Jobs**: Scheduled jobs are used to automate tasks such as updating booking statuses and sending reminders.
+- **Scheduled Jobs**: Scheduled jobs are used to automate the task of updating booking statuses.
 
 ## Technologies Used
 
@@ -47,14 +47,6 @@ BOOK IT is a digital hall booking system developed using the Vite MERN stack in 
     npm run dev
     ```
 
-## Usage
-
-- Visit the application in your web browser.
-- Register an account or log in if you already have one.
-- Browse available halls and book them for your events.
-- Receive email notifications regarding booking status updates.
-- Manage your bookings and view their statuses.
-
 ## Screenshots
 
 ![Screenshot 1](/Screenshots/Login.png)
@@ -75,6 +67,4 @@ This project is licensed under the MIT License.
 
 ## Authors
 
- **Kathir Karthik M**
- 🤝
- **Mouniesh V** 
+**[Kathir Karthik M](https://github.com/kathirKarthik001)**  🤝  **[Mouniesh V](https://github.com/Mounieshh)**
