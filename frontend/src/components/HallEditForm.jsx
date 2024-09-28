@@ -19,13 +19,16 @@ function HallEditForm({ hall,onCancel }) {
   useEffect(() => {
     if (isError) {
       toast.error(message);
-      dispatch(reset());
     }
 
     if (isSuccess) {
-      dispatch(reset());
+      toast.success('updated successfully !')
       onCancel()
     }
+
+    return (() =>{
+      dispatch(reset());
+    })
 
   }, [isError, isSuccess, message, onCancel, dispatch]);
 
@@ -38,7 +41,6 @@ function HallEditForm({ hall,onCancel }) {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log('edit button clicked')
     dispatch(updateHalls({hallId:hall._id , hallData:formData}));
   };
 

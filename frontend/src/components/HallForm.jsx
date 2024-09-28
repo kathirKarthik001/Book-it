@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createHalls, reset } from '../features/hall/hallSlice';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import Spinner from './Spinner';
 
 function HallForm({ onCancel }) {
   const dispatch = useDispatch();
@@ -15,24 +16,23 @@ function HallForm({ onCancel }) {
     contactNumber: '',
     amenities: 'a/c',
   });
-  const { isSuccess, isError, message } = useSelector((state) => state.halls);
+  const { isSuccess, isError, message ,isLoading  } = useSelector((state) => state.halls);
 
   useEffect(() => {
     if (isError) {
-      toast.error(message);
-      dispatch(reset());
+      toast.error(message); 
     }
 
-    if (isSuccess) {
-      dispatch(reset());
-      toast.success('updation successful !')
-      setTimeout(() => {
-        onCancel()
-      }, 10000);
-      
+    if(isSuccess) {
+      toast.success('Creation successful !')
+      onCancel()
     }
 
-  }, [isError, isSuccess, message, onCancel, dispatch]);
+    return(()=>{
+      dispatch(reset());
+    })
+
+  }, [isError, isSuccess, message]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -45,6 +45,10 @@ function HallForm({ onCancel }) {
     e.preventDefault();
     dispatch(createHalls(formData));
   };
+
+  if(isLoading){
+    return <Spinner />
+  }
 
   return (
     <>

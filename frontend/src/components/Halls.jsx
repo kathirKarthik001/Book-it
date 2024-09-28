@@ -27,7 +27,7 @@ function Halls() {
 
   const toggleEditForm = () =>{
     dispatch(reset())
-    setEditShowForm(!showForm)
+    setEditShowForm(!showEditForm)
   }
 
 
@@ -60,8 +60,9 @@ function Halls() {
 
 // Delete functionality
 
-  const handleDelete = (hallId) => {
-    dispatch(deleteHalls(hallId));
+  const handleDelete = async (hallId) => {
+    await dispatch(deleteHalls(hallId));
+    toast.success(`Deleted successfully`)
   };
 
 

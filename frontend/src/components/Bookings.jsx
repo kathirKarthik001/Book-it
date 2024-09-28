@@ -18,8 +18,8 @@ function Bookings() {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      await deletePendingBooking(token, id);
-      dispatch(deletePendingBooking(id));
+      // await deletePendingBooking(token, id);
+      await dispatch(deletePendingBooking(id));
       toast.success("Pending booking deleted");
     } catch (error) {
       toast.error(error.message);

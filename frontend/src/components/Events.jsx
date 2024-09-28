@@ -9,7 +9,7 @@ function EventComponent() {
 
   useEffect(() => {
     dispatch(fetchApprovedBookings());
-  }, [dispatch]);
+  }, []);
 
   if (loading) return <Spinner />;
 
