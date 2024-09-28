@@ -62,7 +62,7 @@ function Login() {
   }
 
   return (
-    <>
+    <div className='login'>
 
         <section className="heading" >
             <Logo width='230px'/>
@@ -95,7 +95,7 @@ function Login() {
           </p>
         </section>
 
-    </>
+    </div>
   )
 }
 
