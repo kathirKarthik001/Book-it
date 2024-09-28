@@ -1,5 +1,5 @@
 const express =  require('express')
-const  dotenv = require('dotenv').config()
+const dotenv = require('dotenv').config()
 const colors = require('colors')
 const cors = require('cors');
 
@@ -15,9 +15,15 @@ const app = express()
 connectDB()
 ScheduledJob()
 
+// CORS configuration
 app.use(cors({
-    origin: 'https://book-it-mern-app-mk.vercel.app/' // frontend URL
-  }));
+  origin: 'https://book-it-mern-app-mk.vercel.app', // Frontend URL (no trailing slash)
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Added PATCH method
+  credentials: true, // Allow cookies or credentials if necessary
+}));
+
+// Handle preflight requests
+app.options('*', cors());
 
 
 //req - parsers
