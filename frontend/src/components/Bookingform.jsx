@@ -35,10 +35,13 @@ function Bookingform({ hall  ,onCancel }) {
         if (isError) {
           toast.error(message);
         }
-
-        dispatch(clearMessage());
-
-    }, [isError, isSuccess, message, onCancel, dispatch]);
+      
+        return () => {
+          // Clear the message on component unmount or state reset
+          dispatch(clearMessage());
+        };
+      }, [isError, isSuccess, message, onCancel, dispatch]);
+      
 
 
     
