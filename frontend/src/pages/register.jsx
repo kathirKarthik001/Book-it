@@ -87,7 +87,7 @@ function Register() {
         </div>
         <div className="form-group">
           <select name="role" id="role" value={role} onChange={onChange}>
-          <option value="admin">Admin</option>
+          {/* <option value="admin">Admin</option> */}
           <option value="user" >User</option>   
           </select>
         </div>
