@@ -3,7 +3,9 @@ const Booking = require('../model/bookingModel');
 
 
 //    0 */5 * * *       ---> for every five hours
-const ScheduledJob = () =>{  return  schedule.scheduleJob('*/1 * * * *', async () => {
+//    0 0 1 * *         ---> for every month
+//    */1 * * * *       ---> for every minute
+const ScheduledJob = () =>{  return  schedule.scheduleJob('0 0 1 * *', async () => {
     try {
         console.log('Scheduled job running at:', new Date());
 

@@ -17,9 +17,9 @@ ScheduledJob()
 
 // CORS configuration
 app.use(cors({
-  origin: 'https://book-it-mern-app-mk.vercel.app', // Frontend URL (no trailing slash)
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Added PATCH method
-  credentials: true, // Allow cookies or credentials if necessary
+  origin: 'https://book-it-mern-app-mk.vercel.app', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], 
+  credentials: true, 
 }));
 
 // Handle preflight requests

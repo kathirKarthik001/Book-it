@@ -945,4 +945,18 @@ input[type="time"] {
 
 }
 
+.title_card{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.refresh_btn{
+  padding: 4px;
+  font-weight: bolder;
+  display: flex;
+  gap: 4px;
+}
+
 
